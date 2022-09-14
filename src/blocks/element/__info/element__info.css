@@ -1,0 +1,7 @@
+.element__info {
+  max-width: 100%;
+  padding: 25px 20px 31px 21px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+}

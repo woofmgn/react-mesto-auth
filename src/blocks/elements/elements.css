@@ -1,0 +1,10 @@
+.elements {
+  padding-bottom: 67px;
+  min-height: 40vh;
+}
+
+@media screen and (max-width: 500px) {
+  .elements {
+    padding-bottom: 48px;
+  }
+}

@@ -1,0 +1,8 @@
+.popup__form-button_inactive {
+  pointer-events: none;
+  opacity: .2;
+}
+
+.popup__form-button_inactive:hover {
+  cursor: default;
+}
