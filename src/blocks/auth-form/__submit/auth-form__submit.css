@@ -1,0 +1,33 @@
+.auth-form__submit {
+  max-width: 358px;
+  max-height: 50px;
+  width: 100%;
+  padding: 0;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin-top: 18px;
+  background-color: #FFF;
+  border-color: #FFF;
+  border: 0;
+  border-radius: 2px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000;
+}
+
+.auth-form__submit:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 550px) {
+  .auth-form__submit {
+    margin-top: 15px;
+    max-height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

@@ -1,0 +1,9 @@
+.auth-form__input {
+  margin-bottom: 30px;
+  background-color: black;
+  border-bottom: 2px solid #CCCCCC; 
+}
+
+.auth-form__input:last-of-type {
+  margin-bottom: 229px;
+}

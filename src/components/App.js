@@ -8,7 +8,9 @@ import EditProfilePopup from "./EditProfilePopup";
 import Footer from "./Footer";
 import Header from "./Header";
 import ImagePopup from "./ImagePopup";
+import Login from "./Login";
 import Main from "./Main";
+import Register from "./Register";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -159,6 +161,8 @@ function App() {
       <div className="page">
         <CurrentUserContext.Provider value={currentUser}>
           <Header />
+          <Login />
+          <Register />
           <Main
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
