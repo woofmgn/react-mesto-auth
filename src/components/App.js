@@ -10,6 +10,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import Footer from "./Footer";
 import Header from "./Header";
 import ImagePopup from "./ImagePopup";
+import InfoTooltip from "./InfoTooltip";
 import Login from "./Login";
 import Main from "./Main";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -20,6 +21,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [isDeleteCardPopup, setDeleteCardPopup] = useState(false);
+  const [isAuthPopup, setAuthPopup] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [isImagePopupOpen, setImagePopupOpen] = useState(false);
   const [cards, setCards] = useState([]);
@@ -66,6 +68,10 @@ function App() {
 
   const handleAddPlaceClick = () => {
     setAddPlacePopupOpen(!isAddPlacePopupOpen);
+  };
+
+  const handleAuthPopup = () => {
+    setAuthPopup(!isAuthPopup);
   };
 
   const handleCardClick = (card) => {
@@ -219,6 +225,7 @@ function App() {
             handleCardDeleteConfirm={handleCardDelete}
             buttonLoading={buttonLoading}
           />
+          <InfoTooltip isOpen={false} onClose={closeAllPopups} />
         </CurrentUserContext.Provider>
       </div>
     </div>

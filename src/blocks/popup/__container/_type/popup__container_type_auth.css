@@ -1,0 +1,10 @@
+.popup__container_type_auth {
+  padding-bottom: 0;
+  background-image: url(../../../../images/loginFailed.svg);
+  background-size: 120px 120px;
+  background-repeat: no-repeat;
+  background-position: 155px 55px;
+  max-height: 330px;
+  height: 100%;
+  /* flex-direction: end; */
+}
