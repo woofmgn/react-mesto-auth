@@ -29,6 +29,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [buttonLoading, setButtonLoading] = useState(false);
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLogged, setIsLogged] = useState(false);
 
   const dataPreload = () => {
@@ -68,6 +70,10 @@ function App() {
 
   const handleAddPlaceClick = () => {
     setAddPlacePopupOpen(!isAddPlacePopupOpen);
+  };
+
+  const handleSetLoginStatus = () => {
+    setIsLogged(!isLogged);
   };
 
   const handleAuthPopup = () => {
@@ -190,8 +196,29 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/sign-up" element={<Register />} />
-            <Route path="/sign-in" element={<Login />} />
+            <Route
+              path="/sign-up"
+              element={
+                <Register
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                />
+              }
+            />
+            <Route
+              path="/sign-in"
+              element={
+                <Login
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  onChangeLoginStatus={handleSetLoginStatus}
+                />
+              }
+            />
           </Routes>
           <Footer />
           <EditProfilePopup
