@@ -38,9 +38,12 @@ function Register({ email, setEmail, password, setPassword, handleRegister }) {
           />
           <button className="auth-form__submit">Зарегистрироваться</button>
         </form>
-        <Link className="auth__link" to="/sign-in">
-          Уже зарегистрированы? Войти
-        </Link>
+        <p className="auth__subtitle">
+          Уже зарегистрированы?
+          <Link className="auth__link" to="/sign-in">
+            Войти
+          </Link>
+        </p>
       </section>
     </>
   );

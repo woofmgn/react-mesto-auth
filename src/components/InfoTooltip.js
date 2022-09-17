@@ -1,5 +1,3 @@
-import React from "react";
-
 function InfoTooltip({ isOpen, onClose }) {
   return (
     <div className={`popup popup_type_auth ${isOpen ? "popup_opened" : ""}`}>

@@ -137,7 +137,6 @@ function App() {
       })
       .catch((err) => console.log(`Ошибка ${err}`))
       .finally(() => {
-        setEmail("");
         setPassword("");
       });
   };
@@ -153,6 +152,14 @@ function App() {
           navigate("/");
         })
         .catch((err) => console.log(`Ошибка ${err}`));
+    }
+  };
+
+  const handleUserLogOut = () => {
+    if (isLogged) {
+      localStorage.removeItem("token");
+      handleSetLoginStatus();
+      navigate("/sign-in");
     }
   };
 
@@ -233,7 +240,11 @@ function App() {
     <div className="root">
       <div className="page">
         <CurrentUserContext.Provider value={currentUser}>
-          <Header email={email} />
+          <Header
+            email={email}
+            isLogged={isLogged}
+            onLogOutUser={handleUserLogOut}
+          />
           <Routes>
             <Route
               path="/"

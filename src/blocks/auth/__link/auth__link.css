@@ -1,5 +1,6 @@
 .auth__link {
   margin-top: 15px;
+  margin-left: 10px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -7,6 +8,7 @@
   line-height: 17px;
   text-align: center;
   color: #FFFFFF;
+  text-decoration: none;
 }
 
 .auth__link:hover {
