@@ -1,0 +1,15 @@
+.header__button {
+  text-decoration: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  color: #FFFFFF;
+  align-self: center;
+}
+
+.header__button:hover {
+  opacity: 0.6;
+}

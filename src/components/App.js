@@ -148,6 +148,7 @@ function App() {
       auth
         .checkToken(jwt)
         .then((res) => {
+          setEmail(res.data.email);
           handleSetLoginStatus();
           navigate("/");
         })
@@ -232,7 +233,7 @@ function App() {
     <div className="root">
       <div className="page">
         <CurrentUserContext.Provider value={currentUser}>
-          <Header />
+          <Header email={email} />
           <Routes>
             <Route
               path="/"
