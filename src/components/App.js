@@ -291,7 +291,7 @@ function App() {
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
-                  handleRegister={handleRegisterUser}
+                  onRegister={handleRegisterUser}
                 />
               }
             />
@@ -303,7 +303,7 @@ function App() {
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
-                  handleAutorize={handleAuthorizeUser}
+                  onLogin={handleAuthorizeUser}
                 />
               }
             />

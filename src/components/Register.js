@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Register({ email, setEmail, password, setPassword, handleRegister }) {
+function Register({ email, setEmail, password, setPassword, onRegister }) {
   const handleChangeEmail = (evt) => {
     setEmail(evt.target.value);
   };
@@ -9,9 +9,9 @@ function Register({ email, setEmail, password, setPassword, handleRegister }) {
     setPassword(evt.target.value);
   };
 
-  const handleSubmitRegister = (evt) => {
+  const handleRegisterSubmit = (evt) => {
     evt.preventDefault();
-    handleRegister();
+    onRegister();
   };
 
   return (
@@ -20,7 +20,7 @@ function Register({ email, setEmail, password, setPassword, handleRegister }) {
         <h3 className="auth__title">Регистрация</h3>
         <form
           className="auth-form auth-form__registration"
-          onSubmit={handleSubmitRegister}
+          onSubmit={handleRegisterSubmit}
         >
           <input
             className="auth-form__input auth-form__input_type_email popup__form-item"

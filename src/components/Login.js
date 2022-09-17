@@ -1,4 +1,4 @@
-function Login({ email, setEmail, password, setPassword, handleAutorize }) {
+function Login({ email, setEmail, password, setPassword, onLogin }) {
   const handleChangeEmail = (evt) => {
     setEmail(evt.target.value);
   };
@@ -7,9 +7,9 @@ function Login({ email, setEmail, password, setPassword, handleAutorize }) {
     setPassword(evt.target.value);
   };
 
-  const handleAuthorizeSubmit = (evt) => {
+  const handleLoginSubmit = (evt) => {
     evt.preventDefault();
-    handleAutorize();
+    onLogin();
   };
 
   return (
@@ -18,7 +18,7 @@ function Login({ email, setEmail, password, setPassword, handleAutorize }) {
         <h3 className="auth__title">Вход</h3>
         <form
           className="auth-form auth-form__login"
-          onSubmit={handleAuthorizeSubmit}
+          onSubmit={handleLoginSubmit}
         >
           <input
             className="auth-form__input auth-form__input_type_email popup__form-item"
