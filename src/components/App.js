@@ -17,6 +17,9 @@ import Main from "./Main";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Register from "./Register";
 
+import regComplete from "../images/loginAccept.svg";
+import LogInFailed from "../images/loginFailed.svg";
+
 function App() {
   let navigate = useNavigate();
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -34,6 +37,8 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogged, setIsLogged] = useState(false);
+  const [infoMessage, setInfoMessage] = useState("");
+  const [tooltipImage, setTooltipImage] = useState();
 
   const dataPreload = () => {
     setLoading(true);
@@ -103,6 +108,8 @@ function App() {
     setEditAvatarPopupOpen(false);
     setImagePopupOpen(false);
     setDeleteCardPopup(false);
+    setAuthPopup(false);
+    setInfoMessage("");
     setSelectedCard({});
   };
 
@@ -114,8 +121,16 @@ function App() {
       })
       .then(() => {
         navigate("/sign-in");
+        setInfoMessage("Вы успешно зарегистрировались!");
+        setTooltipImage(regComplete);
+        handleAuthPopup();
       })
-      .catch((err) => console.log(`Ошибка ${err}`))
+      .catch((err) => {
+        setInfoMessage("Что-то пошло не так! Попробуйте ещё раз.");
+        setTooltipImage(LogInFailed);
+        handleAuthPopup();
+        console.log(`Ошибка ${err}`);
+      })
       .finally(() => {
         setEmail("");
         setPassword("");
@@ -135,7 +150,12 @@ function App() {
         handleSetLoginStatus();
         navigate("/");
       })
-      .catch((err) => console.log(`Ошибка ${err}`))
+      .catch((err) => {
+        setInfoMessage("Что-то пошло не так! Попробуйте ещё раз.");
+        setTooltipImage(LogInFailed);
+        handleAuthPopup();
+        console.log(`Ошибка ${err}`);
+      })
       .finally(() => {
         setPassword("");
       });
@@ -320,7 +340,12 @@ function App() {
             handleCardDeleteConfirm={handleCardDelete}
             buttonLoading={buttonLoading}
           />
-          <InfoTooltip isOpen={false} onClose={closeAllPopups} />
+          <InfoTooltip
+            infoMessage={infoMessage}
+            image={tooltipImage}
+            isOpen={isAuthPopup}
+            onClose={closeAllPopups}
+          />
         </CurrentUserContext.Provider>
       </div>
     </div>
