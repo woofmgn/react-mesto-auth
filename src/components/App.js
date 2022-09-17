@@ -62,6 +62,10 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    handleCheckToken();
+  }, []);
+
   const handleEditAvatarClick = () => {
     setEditAvatarPopupOpen(!isEditAvatarPopupOpen);
   };
@@ -102,7 +106,7 @@ function App() {
     setSelectedCard({});
   };
 
-  const handleRegisterUser = (evt) => {
+  const handleRegisterUser = () => {
     auth
       .register(email, password)
       .then((res) => {
@@ -118,7 +122,7 @@ function App() {
       });
   };
 
-  const handleAuthorizeUser = (evt) => {
+  const handleAuthorizeUser = () => {
     auth
       .login(email, password)
       .then((data) => {
@@ -136,6 +140,19 @@ function App() {
         setEmail("");
         setPassword("");
       });
+  };
+
+  const handleCheckToken = () => {
+    if (localStorage.getItem("token")) {
+      const jwt = localStorage.getItem("token");
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          handleSetLoginStatus();
+          navigate("/");
+        })
+        .catch((err) => console.log(`Ошибка ${err}`));
+    }
   };
 
   const handleUpdateUser = (userInfo) => {

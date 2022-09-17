@@ -31,6 +31,16 @@ class Auth {
       body: JSON.stringify({ email, password }),
     }).then(this._getResponseData);
   }
+
+  checkToken(jwt) {
+    return fetch(`${authUrl}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    }).then(this._getResponseData);
+  }
 }
 
 const auth = new Auth(authUrl);
