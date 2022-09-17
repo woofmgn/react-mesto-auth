@@ -1,8 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Register({ email, setEmail, password, setPassword }) {
-  let navigate = useNavigate();
-
+function Register({ email, setEmail, password, setPassword, handleRegister }) {
   const handleChangeEmail = (evt) => {
     setEmail(evt.target.value);
   };
@@ -13,28 +11,7 @@ function Register({ email, setEmail, password, setPassword }) {
 
   const handleSubmitRegister = (evt) => {
     evt.preventDefault();
-    return fetch("https://auth.nomoreparties.co/signup", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        return res;
-      })
-      .then(() => {
-        navigate("/sign-in");
-      })
-      .catch((err) => console.log(`Ошибка ${err}`))
-      .finally(() => {
-        setEmail("");
-        setPassword("");
-      });
+    handleRegister();
   };
 
   return (

@@ -6,4 +6,6 @@ const settingsApi = {
   },
 };
 
-export { settingsApi };
+const authUrl = "https://auth.nomoreparties.co";
+
+export { settingsApi, authUrl };

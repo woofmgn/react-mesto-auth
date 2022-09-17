@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api";
+import auth from "../utils/auth";
 import AddPlacePopup from "./AddPlacePopup";
 import ConfirmDeletePopup from "./ConfirmDeletePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -17,6 +18,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import Register from "./Register";
 
 function App() {
+  let navigate = useNavigate();
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
@@ -98,6 +100,42 @@ function App() {
     setImagePopupOpen(false);
     setDeleteCardPopup(false);
     setSelectedCard({});
+  };
+
+  const handleRegisterUser = (evt) => {
+    auth
+      .register(email, password)
+      .then((res) => {
+        return res;
+      })
+      .then(() => {
+        navigate("/sign-in");
+      })
+      .catch((err) => console.log(`Ошибка ${err}`))
+      .finally(() => {
+        setEmail("");
+        setPassword("");
+      });
+  };
+
+  const handleAuthorizeUser = (evt) => {
+    auth
+      .login(email, password)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          return data;
+        }
+      })
+      .then(() => {
+        handleSetLoginStatus();
+        navigate("/");
+      })
+      .catch((err) => console.log(`Ошибка ${err}`))
+      .finally(() => {
+        setEmail("");
+        setPassword("");
+      });
   };
 
   const handleUpdateUser = (userInfo) => {
@@ -204,6 +242,7 @@ function App() {
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
+                  handleRegister={handleRegisterUser}
                 />
               }
             />
@@ -215,7 +254,7 @@ function App() {
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
-                  onChangeLoginStatus={handleSetLoginStatus}
+                  handleAutorize={handleAuthorizeUser}
                 />
               }
             />

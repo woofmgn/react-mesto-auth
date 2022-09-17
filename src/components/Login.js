@@ -1,14 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
-function Login({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  onChangeLoginStatus,
-}) {
-  let navigate = useNavigate();
-
+function Login({ email, setEmail, password, setPassword, handleAutorize }) {
   const handleChangeEmail = (evt) => {
     setEmail(evt.target.value);
   };
@@ -17,34 +7,9 @@ function Login({
     setPassword(evt.target.value);
   };
 
-  const authorize = () => {
-    return fetch("https://auth.nomoreparties.co/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        return res;
-      })
-      .then(() => {
-        onChangeLoginStatus();
-        navigate("/");
-      })
-      .catch((err) => console.log(`Ошибка ${err}`))
-      .finally(() => {
-        setEmail("");
-        setPassword("");
-      });
-  };
-
   const handleAuthorizeSubmit = (evt) => {
     evt.preventDefault();
-    authorize();
+    handleAutorize();
   };
 
   return (
