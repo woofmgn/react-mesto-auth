@@ -38,7 +38,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [isLogged, setIsLogged] = useState(false);
   const [infoMessage, setInfoMessage] = useState("");
-  const [tooltipImage, setTooltipImage] = useState();
+  const [tooltipImage, setTooltipImage] = useState("");
 
   const dataPreload = () => {
     setLoading(true);
@@ -55,17 +55,21 @@ function App() {
   };
 
   useEffect(() => {
-    dataPreload();
-  }, []);
+    if (isLogged) {
+      dataPreload();
+    }
+  }, [isLogged]);
 
   useEffect(() => {
-    api
-      .getUserProfile()
-      .then((userProfile) => setCurrentUser(userProfile))
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
-  }, []);
+    if (isLogged) {
+      api
+        .getUserProfile()
+        .then((userProfile) => setCurrentUser(userProfile))
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
+    }
+  }, [isLogged]);
 
   useEffect(() => {
     handleCheckToken();
@@ -260,11 +264,7 @@ function App() {
     <div className="root">
       <div className="page">
         <CurrentUserContext.Provider value={currentUser}>
-          <Header
-            email={email}
-            isLogged={isLogged}
-            onLogOutUser={handleUserLogOut}
-          />
+          <Header email={email} onLogOutUser={handleUserLogOut} />
           <Routes>
             <Route
               path="/"

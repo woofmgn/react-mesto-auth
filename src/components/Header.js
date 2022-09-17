@@ -1,7 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import logo from "../images/header-logo.svg";
 
-function Header({ email, isLogged, onLogOutUser }) {
+function Header({ email, onLogOutUser }) {
   let location = useLocation();
   return (
     <header className="header">
@@ -10,23 +10,36 @@ function Header({ email, isLogged, onLogOutUser }) {
         <p className="header__user-email">
           {location.pathname === "/" ? email : ""}
         </p>
-        {isLogged ? (
-          <Link
-            className="header__button"
-            to="/sign-in"
-            onClick={() => onLogOutUser()}
-          >
-            Выйти
-          </Link>
-        ) : location.pathname === "/sign-up" ? (
-          <Link className="header__button" to="/sign-in">
-            Войти
-          </Link>
-        ) : (
-          <Link className="header__button" to="/sign-up">
-            Регистрация
-          </Link>
-        )}
+        <Routes>
+          <Route
+            path="sign-up"
+            element={
+              <Link className="header__button" to="/sign-in">
+                Войти
+              </Link>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Link
+                className="header__button"
+                to="/sign-in"
+                onClick={() => onLogOutUser()}
+              >
+                Выйти
+              </Link>
+            }
+          />
+          <Route
+            path="/sign-in"
+            element={
+              <Link className="header__button" to="/sign-up">
+                Регистрация
+              </Link>
+            }
+          />
+        </Routes>
       </div>
     </header>
   );

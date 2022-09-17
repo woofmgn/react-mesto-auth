@@ -22,7 +22,6 @@ function PopupWithForm({
           className="popup__form popup__form_type_profile form"
           name={name}
           onSubmit={onSubmit}
-          noValidate
         >
           <fieldset className="popup__input-container">
             {children}
